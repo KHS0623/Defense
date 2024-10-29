@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public SceneLoader SceneLoader;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        SceneLoader = GetComponent<SceneLoader>();
     }
 
     // Update is called once per frame
@@ -26,7 +28,8 @@ public class ButtonManager : MonoBehaviour
     public void StartButton()
     {
         //¼Ò¸®
-        SceneManager.LoadScene(1);
+
+        SceneLoader.LoadScene("StageListScene");
     }
 
     public void SettingButton()

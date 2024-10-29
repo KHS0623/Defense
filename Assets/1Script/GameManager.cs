@@ -1,19 +1,54 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager instance;
+    public FadeEffect fade;
+    public bool isLeftMax = false;
+    public bool isRightMax = false;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            fade = GetComponent<FadeEffect>(); // Awake에서 fade 설정
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(InitializeFadeEffect());
+    }
+
+    private IEnumerator InitializeFadeEffect()
+    {
+        yield return new WaitForSeconds(0.1f);  // 씬 로딩 후 약간의 지연
+
+        if (fade != null)
+        {
+            fade.FadeInOutSetting();
+        }
+        else
+        {
+            Debug.LogError("FadeEffect 컴포넌트를 찾을 수 없습니다.");
+        }
     }
 }
