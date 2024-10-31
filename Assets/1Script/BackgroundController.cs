@@ -29,6 +29,10 @@ public class BackgroundController : MonoBehaviour
                 {
                     return;
                 }
+                else if ((delta.x > 0 || delta.x < 0) && GameManager.instance.isMoving == true)
+                {
+                    return;
+                }
                 float deltaX = delta.x * (dragSpeed + 0.5f) * Time.deltaTime;
 
                 transform.position += new Vector3(deltaX, 0, 0);
@@ -52,6 +56,10 @@ public class BackgroundController : MonoBehaviour
                 return;
             }
             else if (mouseDelta.x > 0 && GameManager.instance.isLeftMax == true)
+            {
+                return;
+            }
+            else if ((mouseDelta.x > 0 || mouseDelta.x < 0) && GameManager.instance.isMoving == true)
             {
                 return;
             }

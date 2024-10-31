@@ -36,4 +36,9 @@ public class ButtonManager : MonoBehaviour
     {
 
     }
+
+    public void HomeButton()
+    {
+        SceneLoader.LoadScene("MainScene");
+    }
 }

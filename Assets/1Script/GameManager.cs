@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public FadeEffect fade;
     public bool isLeftMax = false;
     public bool isRightMax = false;
+    public bool isMoving = false; 
 
     private void Awake()
     {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            fade = GetComponent<FadeEffect>(); // Awake에서 fade 설정
+            fade = GetComponent<FadeEffect>(); 
         }
         else if (instance != this)
         {

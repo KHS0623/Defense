@@ -26,7 +26,7 @@ public class ScrollValueController : MonoBehaviour
         }
 
         // 드래그 중일 때
-        if (isDragging)
+        if (isDragging && !GameManager.instance.isMoving)
         {
             Vector2 currentInputPosition;
 
